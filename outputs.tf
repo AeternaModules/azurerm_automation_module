@@ -8,7 +8,7 @@ output "automation_modules_automation_account_name" {
 }
 output "automation_modules_module_link" {
   description = "Map of module_link values across all automation_modules, keyed the same as var.automation_modules"
-  value       = { for k, v in azurerm_automation_module.automation_modules : k => v.module_link if v.module_link != null && length(v.module_link) > 0 }
+  value       = { for k, v in azurerm_automation_module.automation_modules : k => one(v.module_link) if v.module_link != null && length(v.module_link) > 0 }
 }
 output "automation_modules_name" {
   description = "Map of name values across all automation_modules, keyed the same as var.automation_modules"
